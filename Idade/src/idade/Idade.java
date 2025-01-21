@@ -26,16 +26,39 @@ public class Idade {
         int anoAtual = calendario.get(Calendar.YEAR);
         System.out.println("Digite ano de nascimento");
         int nas = s.nextInt();
+        
+        
+        boolean entradaValida = false;
+        
+        // Loop até que uma entrada válida seja fornecida
+        while (!entradaValida) {
+            System.out.println("Digite ano de nascimento  válido:");
+            // Verifica se a entrada é um número
+            if (s.hasNextInt()) {
+                nas = s.nextInt();
+                // Verifica se o ano de nascimento é válido
+                if (nas > anoAtual) {
+                    System.out.println("Ano de nascimento não pode ser maior que o ano atual (" + anoAtual + "). Tente novamente.");
+                } else {
+                    entradaValida = true; // Saia do loop se a entrada for válida
+                }
+            } else {
+                System.out.println("Entrada inválida. Por favor, insira um número.");
+                s.next(); // Limpa a entrada inválida
+            }
+        }
+        
         int i = anoAtual - nas;
+        
         if(i>=18){
             
             System.out.println("Voce tem " + i);
-            System.out.println("Entao e maior de idade");
+            System.out.println("Então é maior de idade.");
         } else{
-            System.out.println("Voce tem " + i);
+            System.out.println("Você tem " + i + " anos.");
             System.out.println("Menor de idade");
         }
-        
+        s.close(); // Fecha o scanner
          
     }
     
